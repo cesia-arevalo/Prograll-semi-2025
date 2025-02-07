@@ -26,67 +26,47 @@ public class MainActivity extends AppCompatActivity {
         RadioGroup rgo;
         RadioButton opt;
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_main);
+    Spinner spn;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        @@ -36,24 +35,23 @@
 
-            btn = findViewById(R.id.btnCalcular);
-            btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    tempVal = findViewById(R.id.txtNum1);
-                    double num1 = Double.parseDouble(tempVal.getText().toString());
+        double respuesta = 0.0;
 
-                    tempVal= findViewById(R.id.txtNum2);
-                    double num2 = Double.parseDouble(tempVal.getText().toString());
-
-                    double respuesta = 0.0;
-
-                    opt = findViewById(R.id.optSuma);
-                    if (opt.isChecked()) {
-                        respuesta = num1 + num2;
-                    }
-                    opt = findViewById(R.id.optResta);
-                    if (opt.isChecked()) {
-                        respuesta = num1 - num2;
-                    }
-                    opt = findViewById(R.id.optMultiplicacion);
-                    if (opt.isChecked()) {
-                        respuesta = num1 * num2;
-                    }
-                    opt = findViewById(R.id.optDivision);
-                    if (opt.isChecked()) {
-                        respuesta = num1 / num2;
-                    }
-                    opt = findViewById(R.id.optExponenciacion);
-                    if (opt.isChecked()) {
-                        respuesta = Math.pow(num1, num2);
-                    }
-                    opt = findViewById(R.id.optPorcentaje);
-                    if (opt.isChecked()) {
-                        respuesta = (num1 * num2) / 100;
-                    }
-                    opt = findViewById(R.id.optRaizCuarta);
-                    if (opt.isChecked()) {
-                        respuesta = Math.pow(num1, 1.0 / 4);
-                    }
-                    opt = findViewById(R.id.optFactorial);
-                    if (opt.isChecked()) {
-                        respuesta = factorial((int) num1);
-                    }
-
-                    tempVal= findViewById(R.id.lblRespuesta);
-                    tempVal.setText("Respuesta: " + respuesta);
-                }
-            });
+        opt = findViewById(R.id.optSuma);
+        if (opt.isChecked()) {
+            respuesta = num1 + num2;
         }
-
-        private int factorial(int num) {
-            if (num <= 1) return 1;
-            return num * factorial(num - 1);
+        opt = findViewById(R.id.optResta);
+        if (opt.isChecked()) {
+            respuesta = num1 - num2;
         }
-    }
-
-
+        opt = findViewById(R.id.optMultiplicacion);
+        if (opt.isChecked()) {
+            respuesta = num1 * num2;
+        }
+        opt = findViewById(R.id.optDivision);
+        if (opt.isChecked()) {
+            respuesta = num1 / num2;
+            spn = findViewById(R.id.spnOpciones);
+            switch (spn.getSelectedItemPosition()){
+                case 0:
+                    respuesta = num1 + num2;
+                    break;
+                case 1:
+                    respuesta = num1 - num2;
+                    break;
+                case 2:
+                    respuesta = num1 * num2;
+                    break;
+                case 3:
+                    respuesta = num1 / num2;
+                    break;
+            }
+            tempVal = findViewById(R.id.lblRespuesta);
+            tempVal.setText("Respuesta: "+ respuesta);
+        }
+    });
+}
 
