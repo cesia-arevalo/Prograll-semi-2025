@@ -1,71 +1,71 @@
 package com.example.miprimeraplicacion;
 
+import android.graphics.Color;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.Spinner;
-import android.widget.TabHost;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+@@ -17,10 +22,59 @@
+        import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
-    TabHost tbh;
-    Button btn;
-    TextView tempVal;
-    Spinner spn;
-    conversores objConversores = new conversores();
 
+    TextView tempVal;
+    SensorManager sensorManager;
+    Sensor sensor;
+    SensorEventListener sensorEventListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tbh = findViewById(R.id.tbhConversor);
-        tbh.setup();
-
-        tbh.addTab(tbh.newTabSpec("Monedas").setContent(R.id.tabMonedas).setIndicator("MONEDAS", null));
-        tbh.addTab(tbh.newTabSpec("Longitud").setContent(R.id.tabLongitud).setIndicator("LONGITUD", null));
-        tbh.addTab(tbh.newTabSpec("Tiempo").setContent(R.id.tabTiempo).setIndicator("TIEMPO", null));
-        tbh.addTab(tbh.newTabSpec("Almacenamiento").setContent(R.id.tabAlmacenamiento).setIndicator("ALMACENAMIENTO", null));
-
-        btn = findViewById(R.id.btnCalcular);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int opcion = tbh.getCurrentTab();
-
-                spn = findViewById(R.id.spnDeMonedas);
-                int de = spn.getSelectedItemPosition();
-
-                spn = findViewById(R.id.spnAMonedas);
-                int a = spn.getSelectedItemPosition();
-
-                tempVal = findViewById(R.id.txtCantidad);
-                double cantidad = Double.parseDouble(tempVal.getText().toString());
-
-                tempVal = findViewById(R.id.lblRespuesta);
-                double respuesta = objConversores.convertir(opcion, de, a, cantidad);
-                tempVal.setText("Respuesta: "+ respuesta);
-            }
-        });
+        sensorLuz();
     }
-}
-class conversores{
-    double[][] valores= {
-            {1,0.98, 7.73, 25.45, 36.78, 508.87, 8.74},//monedas
-            {},//Longitud
-            {},//tiempo
-            {},//Almacenamiento
-    };
-    public double convertir(int opcion, int de, int a, double cantidad){
-        return valores[opcion][a] / valores[opcion][de] * cantidad;
+    @Override
+    protected void onResume() {
+        iniciar();
+        super.onResume();
+    }
+    @Override
+    protected void onPause() {
+        detener();
+        super.onPause();
+    }
+    private void iniciar(){
+        sensorManager.registerListener(sensorEventListener, sensor, 2000*1000);
+    }
+    private void detener(){
+        sensorManager.unregisterListener(sensorEventListener);
+    }
+    private void sensorLuz(){
+        tempVal = findViewById(R.id.lblSensorLuz);
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+        if( sensor==null ){
+            tempVal.setText("Tu dispositivo, NO tiene el senor de LUZ");
+            finish();
+        }
+        sensorEventListener = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+                double valor = event.values[0];
+                tempVal.setText("Cantidad de Luz: "+ valor);
+
+                if(valor<=20){
+                    getWindow().getDecorView().setBackgroundColor(Color.GRAY);
+                }else if(valor<=50){
+                    getWindow().getDecorView().setBackgroundColor(Color.BLUE);
+                }else{
+                    getWindow().getDecorView().setBackgroundColor(Color.YELLOW);
+                }
+            }
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+            }
+        };
     }
 }
