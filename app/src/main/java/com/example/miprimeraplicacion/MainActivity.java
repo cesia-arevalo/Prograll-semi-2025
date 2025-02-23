@@ -28,9 +28,9 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
     TextView tempVal;
-
     Button btn;
     MediaPlayer mediaPlayer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     void reproductorMusca(){
-        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.audio);
         mediaPlayer = MediaPlayer.create(this, R.raw.audio);
     }
     void iniciar(){
