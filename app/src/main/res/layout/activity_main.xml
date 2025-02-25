@@ -1,39 +1,100 @@
-<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@android:id/tabhost"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <TabHost
+        android:id="@android:id/tabhost"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TabWidget
-            android:id="@android:id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <FrameLayout
-            android:id="@android:id/tabcontent"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
-                android:id="@+id/tab1"
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:padding="10dp">
 
-            </LinearLayout>
+                <!-- Pestaña 1: Cálculo del consumo de agua -->
+                <LinearLayout
+                    android:id="@+id/tab1"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp">
 
-            <LinearLayout
-                android:id="@+id/tab2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                    <TextView
+                        android:text="Ingrese los metros consumidos:"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
-            </LinearLayout>
+                    <EditText
+                        android:id="@+id/edtMetros"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"/>
 
-        </FrameLayout>
-    </LinearLayout>
-</TabHost>
+                    <Button
+                        android:id="@+id/btnCalcular"
+                        android:text="Calcular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/txtResultado"
+                        android:text="Total a pagar: $0.00"
+                        android:textSize="18sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <!-- Pestaña 2: Conversor de Área -->
+                <LinearLayout
+                    android:id="@+id/tab2"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:text="Ingrese el valor en metros cuadrados:"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <EditText
+                        android:id="@+id/edtMetrosCuadrados"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"/>
+
+                    <Spinner
+                        android:id="@+id/spinnerUnidades"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <Button
+                        android:id="@+id/btnConvertir"
+                        android:text="Convertir"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/txtConversion"
+                        android:text="Resultado:"
+                        android:textSize="18sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
+</RelativeLayout>
