@@ -49,10 +49,31 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"/>
+    <EditText
+        android:id="@+id/txtCosto"
+        android:hint="@string/costo"
+        android:layout_below="@id/txtPrecio"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"/>
+    <EditText
+        android:id="@+id/txtStock"
+        android:hint="@string/stock"
+        android:layout_below="@id/txtCosto"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"/>
     <ImageButton
         android:id="@+id/imgfotoBebida"
-        android:layout_below="@id/txtPrecio"
+        android:layout_below="@id/txtStock"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
         android:src="@mipmap/ic_launcher_round"
