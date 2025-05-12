@@ -1,83 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CrearEditarBebidaActivity">
+    tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/txtCodigo"
-        android:hint="@string/c_digo"
+        android:id="@+id/txtNombre"
+        android:hint="Nombre"
         android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <EditText
-        android:id="@+id/txtDescripcion"
-        android:hint="@string/descripci_n"
-        android:layout_below="@id/txtCodigo"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:id="@+id/txtDireccion"
+        android:hint="Direccion"
+        android:layout_below="@id/txtNombre"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <EditText
-        android:id="@+id/txtMarca"
-        android:hint="@string/marca"
-        android:layout_below="@id/txtDescripcion"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:id="@+id/txtTelefono"
+        android:hint="Telefono"
+        android:layout_below="@id/txtDireccion"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <EditText
-        android:id="@+id/txtPresentacion"
-        android:hint="@string/presentacion"
-        android:layout_below="@id/txtMarca"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:id="@+id/txtEmail"
+        android:hint="Email"
+        android:layout_below="@id/txtTelefono"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <EditText
-        android:id="@+id/txtPrecio"
-        android:hint="@string/precio"
-        android:inputType="numberDecimal"
-        android:layout_below="@id/txtPresentacion"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:id="@+id/txtDui"
+        android:hint="Dui"
+        android:layout_below="@id/txtEmail"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <ImageButton
-        android:id="@+id/imgfotoBebida"
-        android:layout_below="@id/txtPrecio"
+        android:id="@+id/imgFotoAmigo"
+        android:layout_below="@id/txtDui"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
         android:src="@mipmap/ic_launcher_round"
         android:layout_width="100dp"
         android:layout_height="100dp"/>
     <Button
-        android:id="@+id/btnGuardarBebida"
-        android:contentDescription="@string/todo"
-        android:text="@string/guardar_bebida"
-        android:layout_below="@id/imgfotoBebida"
+        android:id="@+id/btnGuardarAmigo"
+        android:text="Guardar Amigo"
+        android:layout_below="@id/imgFotoAmigo"
         android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabListaBebidas"
-        android:contentDescription="@string/todo"
+        android:id="@+id/fabListaAmigos"
         android:src="@android:drawable/ic_menu_revert"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
 </RelativeLayout>
