@@ -184,6 +184,7 @@ public class lista_amigos extends Activity {
                             jsonObject.put("email", amigo.getEmail());
                             jsonObject.put("dui", amigo.getDui());
                             jsonObject.put("urlFoto", amigo.getFoto());
+                            jsonObject.put("urlCompletaFotoFirestore",amigo.getUrlCompletaFotoFirestore());
                             jsonObject.put("miToken", amigo.getMiToken());
 
                             jsonArray.put(jsonObject);

@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         img = findViewById(R.id.imgFotoAmigo);
 
         btn = findViewById(R.id.btnGuardarAmigo);
-        btn.setOnClickListener(view -> subirFotoFirestore());
+        btn.setOnClickListener(view ->  guardarAmigo());
 
         fab = findViewById(R.id.fabListaAmigos);
         fab.setOnClickListener(view -> abrirVentana());
@@ -62,24 +62,24 @@ public class MainActivity extends AppCompatActivity {
         mostrarDatos();
         tomarFoto();
     }
-    private void subirFotoFirestore(){
-        mostrarMsg("Subiendo foto a firestore");
-        StorageReference reference = FirebaseStorage.getInstance().getReference();
-        Uri file = Uri.fromFile(new File(urlCompletaFoto));
-        final StorageReference fileRef = reference.child("fotosAmigos/"+file.getLastPathSegment());
-
-        final UploadTask uploadTask = fileRef.putFile(file);
-        uploadTask.addOnSuccessListener(taskSnapshot -> {
-            fileRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                getUrlCompletaFotoFirestore = uri.toString();
-                guardarAmigo();
-            }).addOnFailureListener(e -> {
-                mostrarMsg("Error al obtener la url de la foto: "+e.getMessage());
-            });
-        }).addOnFailureListener(e -> {
-            mostrarMsg("Error al subir la foto: "+e.getMessage());
-        });
-    }
+//    private void subirFotoFirestore(){
+//        mostrarMsg("Subiendo foto a firestore");
+//        StorageReference reference = FirebaseStorage.getInstance().getReference();
+//        Uri file = Uri.fromFile(new File(urlCompletaFoto));
+//        final StorageReference fileRef = reference.child("fotosAmigos/"+file.getLastPathSegment());
+//
+//        final UploadTask uploadTask = fileRef.putFile(file);
+//        uploadTask.addOnSuccessListener(taskSnapshot -> {
+//            fileRef.getDownloadUrl().addOnSuccessListener(uri -> {
+//                getUrlCompletaFotoFirestore = uri.toString();
+//                guardarAmigo();
+//            }).addOnFailureListener(e -> {
+//                mostrarMsg("Error al obtener la url de la foto: "+e.getMessage());
+//            });
+//        }).addOnFailureListener(e -> {
+//            mostrarMsg("Error al subir la foto: "+e.getMessage());
+//        });
+//    }
     private void obtenerToken(){
         try{
             FirebaseMessaging.getInstance().getToken().addOnCompleteListener(tarea->{
